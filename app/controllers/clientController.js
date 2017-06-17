@@ -1,4 +1,3 @@
-
 var moment = require('moment');
 
 var q = require('q');

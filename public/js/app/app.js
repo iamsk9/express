@@ -1,9 +1,7 @@
 var homepath = "/../templates";
-var researcherpath = "/../templates/researcher";
-var orgpath = "/../templates/org";
 
 var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ngMessages',
-	'md.data.table', 'ngFileUpload', 'mdPickers']);
+	'md.data.table', 'mdPickers']);
 
   myapp.config(function($mdThemingProvider, $locationProvider, RestangularProvider, $routeProvider){
     RestangularProvider.setBaseUrl('/api/');
@@ -20,25 +18,9 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 					controller: 'HomeController'
 			})
 			.when('/researcherLogin', {
-					templateUrl: researcherpath + '/_researcherLogin.html',
+					templateUrl: homepath + '/_researcherLogin.html',
 					controller: 'ResearcherLoginController'
 			})
-			.when('/researcherRegistration', {
-					templateUrl: researcherpath + '/_researcherRegistration.html',
-					controller: 'ResearcherRegistrationController'
-			})
-			.when('/orgLogin', {
-					templateUrl: orgpath + '/_orgLogin.html',
-					controller: 'OrgLoginController'
-			})
-			/*.when('/nerds', {
-					templateUrl: basepath + '/nerd.html',
-					controller: 'NerdController'
-			})
-			.when('/geeks', {
-					templateUrl: basepath + '/geek.html',
-					controller: 'GeekController'
-			});*/
   });
 
 	myapp.run(function($rootScope, $mdToast, $location, MyService, $mdSidenav,$mdDialog){

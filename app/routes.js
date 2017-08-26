@@ -17,6 +17,8 @@ var ClientController = require('./controllers/clientController.js');
 
 module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/client', ClientController.addClient);
+
+  apiRoutes.get('/getDetails', ClientController.getDetails);
 /*
 	app.get('/', IndexController.handle);
 

@@ -12,6 +12,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 var utils  = require('../utils');
 
+var request = require('request');
+
 var SALT_WORK_FACTOR = 19204;
 
 exports.addClient = function(req) {
@@ -35,4 +37,17 @@ exports.addClient = function(req) {
 					return;
 				});
 				return addClientDeferred.promise;
+			}
+
+			exports.getDetails = function() {
+				var getDetailsCountDefer = q.defer();
+				request('http://jsonplaceholder.typicode.com/posts', function (error, response, body) {
+				    if (!error && response.statusCode == 200) {
+								getDetailsCountDefer.resolve(body);
+				     }
+						 else {
+						 		getDetailsCountDefer.reject(err);
+						 }
+				});
+				return getDetailsCountDefer.promise;
 			}

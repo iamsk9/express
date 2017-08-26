@@ -11,7 +11,7 @@ var cookieParser = require('cookie-parser');
 //var mongoose = require('mongoose');
 var q = require('q');
 //var db = require('./db');
-
+/*
 var sqldb = require('./mysqldb');
 var connection = sqldb.getConnection().then(function(connection) {
     console.log('Successfully connected to MySQL DB');
@@ -19,7 +19,7 @@ var connection = sqldb.getConnection().then(function(connection) {
 }, function(err){
 	console.log("Error in connecting to the DB - " + err);
 });
-
+*/
 //var connection = db.getConnection();
 
 var env = process.env.NODE_ENV || '';
@@ -32,7 +32,8 @@ if('' == env){						// log every request to the console
 }
 
 var apiRoutes = express.Router();
-require('./app/routes.js')(app, apiRoutes, connection);
+//require('./app/routes.js')(app, apiRoutes, connection);
+require('./app/routes.js')(app, apiRoutes);
 app.use('/api',apiRoutes);
 
 app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users

@@ -19,23 +19,21 @@ myapp.factory('MyService', function(Restangular, $q){
 			});
 			return addClientDefer.promise;
 		},
-
 		getClientsService : function(payload) {
 			return Restangular.one('/clients').get(payload);
 		},
-
-        clientEnquiryTaskRejectStatus : function(payload){
-            var clientEnquiryTaskRejectStatusDefer = $q.defer();
-            Restangular.one('/clientTaskRejectStatus').post('',payload).then(function(data) {
-	            if(data.returnCode == "SUCCESS") {
-						clientEnquiryTaskRejectStatusDefer.resolve(data.data);
-					} else {
-						clientEnquiryTaskRejectStatusDefer.reject();
-					}
-				}, function(err){
-					clientEnquiryTaskRejectStatusDefer.reject(err);
-				});
-			return clientEnquiryTaskRejectStatusDefer.promise;
-    }
+		getDetails : function(){
+			var dashboardDefer = $q.defer();
+			Restangular.one('/getDetails').get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					dashboardDefer.resolve(data);
+				} else {
+					dashboardDefer.reject();
+				}
+			}, function(err) {
+				dashboardDefer.reject(err);
+			});
+			return dashboardDefer.promise;
+		}
   }
 });

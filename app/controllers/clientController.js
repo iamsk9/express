@@ -12,6 +12,7 @@ function handleError(err) {
 		this.res.json({returnCode : "FAILURE", data : null, errorCode : 1014});
 	}
 }
+
 exports.addClient = function(req, res) {
 	this.res = res;
 	this.req = req;
@@ -19,4 +20,17 @@ exports.addClient = function(req, res) {
 	ClientHelper.addClient(req.body).then(function(data) {
 		res.json({returnCode : "SUCCESS", data : data, errorCode : null});
 	}, handleError.bind(this));
+}
+
+exports.getDetails = function(req, res) {
+	ClientHelper.getDetails().then(function(data) {
+		res.json({returnCode: "SUCCESS", data: data, errorCode : null});
+	}, function(err) {
+		console.log(err);
+		if(err.errorCode) {
+			res.json({returnCode : "FAILURE", data : null, errorCode : err.errorCode});
+		} else {
+			res.json({returnCode : "FAILURE", data : null, errorCode : 1014});
+		}
+	});
 }

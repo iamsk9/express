@@ -4,8 +4,6 @@ var moment = require('moment');
 
 var db = require('../../mysqldb');
 
-var emailer = require('../emailer');
-
 var config = require('../../config/config');
 
 var bcrypt = require('bcrypt-nodejs');
